@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Rot13--Ebg13.iml" filepath="$PROJECT_DIR$/Rot13--Ebg13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rot13-Edg13.iml" filepath="$PROJECT_DIR$/Rot13-Edg13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
