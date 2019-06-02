@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Rot13 ↺ Ebg13</string>
+    <string name="about">アプリについて</string>
+    <string name="title_activity_about">アプリについて</string>
+    <string name="dev">作者について</string>
+
+</resources>
