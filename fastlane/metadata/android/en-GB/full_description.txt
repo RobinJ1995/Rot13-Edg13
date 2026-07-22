@@ -1,0 +1,13 @@
+Rot13 ↺ Ebg13 is a tiny, no-nonsense tool for applying the classic ROT13 letter-substitution cipher right on your phone.
+
+Type into the top field and the ROT13 version appears instantly below. Because ROT13 is its own inverse, the very same app both scrambles and unscrambles text — type into either field and the other updates live as you go. There are no buttons to press and nothing to wait for.
+
+Features:
+• Live, two-way conversion as you type
+• ROT13 is its own reverse — one tool encodes and decodes
+• Completely offline — your text never leaves your device
+• No ads, no tracking and no permissions
+• Clean, distraction-free interface
+• Tiny download
+
+Perfect for hiding spoilers and punchlines, puzzles and playful notes — or simply for learning how one of the oldest and simplest ciphers works.

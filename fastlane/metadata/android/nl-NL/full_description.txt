@@ -1,0 +1,13 @@
+Rot13 ↺ Ebg13 is een piepklein, doeltreffend hulpmiddel om de klassieke ROT13-lettervervanging rechtstreeks op je telefoon toe te passen.
+
+Typ in het bovenste veld en de ROT13-versie verschijnt meteen daaronder. Omdat ROT13 zijn eigen omgekeerde is, versleutelt en ontsleutelt dezelfde app je tekst — typ in een van beide velden en het andere werkt live bij. Geen knoppen en geen wachten.
+
+Kenmerken:
+• Live conversie in twee richtingen terwijl je typt
+• ROT13 is zijn eigen omgekeerde — één hulpmiddel codeert en decodeert
+• Volledig offline — je tekst verlaat je toestel nooit
+• Geen reclame, geen tracking en geen rechten
+• Overzichtelijke, afleidingsvrije interface
+• Kleine download
+
+Ideaal om spoilers en clou's te verbergen, voor puzzels en speelse berichtjes — of gewoon om te leren hoe een van de oudste en eenvoudigste coderingen werkt.
