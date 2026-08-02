@@ -6,4 +6,16 @@
 	<string name="title_activity_about">Over</string>
 	<string name="dev">Ontwikkelaar</string>
 
+	<string name="mode_caesar">Caesar</string>
+	<string name="mode_atbash">Atbash</string>
+
+	<string name="hint_plain">Platte tekst</string>
+	<string name="hint_cipher">Cijfertekst</string>
+
+	<string name="cipher_mode">Cijfermethode</string>
+	<string name="shift_value">Verschuiving: %1$d</string>
+
+	<string name="copy">Kopiëren</string>
+	<string name="copied">Gekopieerd naar klembord</string>
+
 </resources>

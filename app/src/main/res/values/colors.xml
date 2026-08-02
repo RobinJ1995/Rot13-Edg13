@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Light-scheme Material 3 colour roles. The night variant in
+     values-night/colors.xml overrides these same names, which is all the
+     DayNight theme needs to follow the system setting. -->
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="md_primary">#4A5BB8</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#DFE0FF</color>
+    <color name="md_on_primary_container">#00105C</color>
+
+    <color name="md_secondary">#5B5D72</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#E0E1F9</color>
+    <color name="md_on_secondary_container">#181A2C</color>
 </resources>

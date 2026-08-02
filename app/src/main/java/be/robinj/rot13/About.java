@@ -5,77 +5,67 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class About extends AppCompatActivity {
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+import com.google.android.material.appbar.MaterialToolbar;
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-    }
+public class About extends AppCompatActivity
+{
+	@Override
+	protected void onCreate (Bundle savedInstanceState)
+	{
+		super.onCreate (savedInstanceState);
+		setContentView (R.layout.activity_about);
+
+		setSupportActionBar ((MaterialToolbar) findViewById (R.id.toolbar));
+
+		ActionBar actionBar = getSupportActionBar ();
+		if (actionBar != null)
+			actionBar.setDisplayHomeAsUpEnabled (true);
+
+		findViewById (R.id.dev).setOnClickListener (this::btnDev_clicked);
+
+		TextView version = findViewById (R.id.version);
+		String v;
+
+		try
+		{
+			PackageInfo pkgInfo = getPackageManager ().getPackageInfo (getPackageName (), 0);
+			v = "v" + pkgInfo.versionName;
+		}
+		catch (PackageManager.NameNotFoundException e)
+		{
+			v = "{" + e.toString () + "}";
+		}
+
+		version.setText (v);
+	}
 
 	public void btnDev_clicked (View view)
 	{
-		Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse("http://www.robinj.be/"));
+		Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse ("http://www.robinj.be/"));
 		this.startActivity (intent);
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+	@Override
+	public boolean onCreateOptionsMenu (Menu menu)
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater ().inflate (R.menu.about, menu);
+		return true;
+	}
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.about, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId ();
-
-        return super.onOptionsItemSelected (item);
-    }
-
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-
-	        TextView version = (TextView) rootView.findViewById (R.id.version);
-	        String v = "";
-
-	        try
-	        {
-		        PackageInfo pkgInfo = this.getActivity ().getPackageManager ().getPackageInfo (this.getActivity ().getPackageName (), 0);
-		        v = "v" + pkgInfo.versionName;
-	        }
-	        catch (PackageManager.NameNotFoundException e)
-	        {
-		        v = "{" + e.toString () + "}";
-	        }
-
-	        version.setText (v);
-
-            return rootView;
-        }
-    }
-
+	@Override
+	public boolean onSupportNavigateUp ()
+	{
+		// The toolbar's up arrow, which the manifest's parentActivityName used
+		// to drive on its own before the ActionBar became ours to set up.
+		finish ();
+		return true;
+	}
 }

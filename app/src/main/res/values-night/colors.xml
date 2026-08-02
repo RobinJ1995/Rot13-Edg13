@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark-scheme counterparts of values/colors.xml. Same names, so the theme
+     itself needs no night-specific variant. -->
+<resources>
+    <color name="md_primary">#BAC3FF</color>
+    <color name="md_on_primary">#17287F</color>
+    <color name="md_primary_container">#313E97</color>
+    <color name="md_on_primary_container">#DFE0FF</color>
+
+    <color name="md_secondary">#C4C5DD</color>
+    <color name="md_on_secondary">#2D2F42</color>
+    <color name="md_secondary_container">#434559</color>
+    <color name="md_on_secondary_container">#E0E1F9</color>
+</resources>

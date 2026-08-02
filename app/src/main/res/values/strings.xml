@@ -6,4 +6,29 @@
     <string name="title_activity_about">About</string>
     <string name="dev">Developer</string>
 
+    <!-- Cipher modes. These are established names for the ciphers rather than
+         prose, so they are intentionally the same in every language. -->
+    <string name="mode_rot13" translatable="false">ROT13</string>
+    <string name="mode_caesar">Caesar</string>
+    <string name="mode_rot47" translatable="false">ROT47</string>
+    <string name="mode_rot5" translatable="false">ROT5</string>
+    <string name="mode_rot18" translatable="false">ROT18</string>
+    <string name="mode_atbash">Atbash</string>
+
+    <string name="hint_plain">Plain text</string>
+    <string name="hint_cipher">Cipher text</string>
+
+    <string name="cipher_mode">Cipher mode</string>
+    <string name="shift_value">Shift: %1$d</string>
+
+    <!-- The wordmark on the About screen. Note these two do not actually round
+         trip: rot13("Rot13") is "Ebg13", not "Edg13". Left as it has always
+         been, because the repository itself is named Rot13-Edg13. -->
+    <string name="about_plain" translatable="false">Rot13</string>
+    <string name="about_encoded" translatable="false">Edg13</string>
+
+    <string name="copy">Copy</string>
+    <string name="copied">Copied to clipboard</string>
+    <string name="clipboard_label" translatable="false">Rot13</string>
+
 </resources>

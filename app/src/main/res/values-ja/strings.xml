@@ -6,4 +6,16 @@
     <string name="title_activity_about">アプリについて</string>
     <string name="dev">作者について</string>
 
+    <string name="mode_caesar">シーザー</string>
+    <string name="mode_atbash">アトバシュ</string>
+
+    <string name="hint_plain">平文</string>
+    <string name="hint_cipher">暗号文</string>
+
+    <string name="cipher_mode">暗号方式</string>
+    <string name="shift_value">シフト: %1$d</string>
+
+    <string name="copy">コピー</string>
+    <string name="copied">クリップボードにコピーしました</string>
+
 </resources>
