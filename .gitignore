@@ -1,11 +1,35 @@
 *.iml
-.gradle
+.gradle/
+.kotlin/
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
 /build
 /captures
 .externalNativeBuild
+.cxx/
+.DS_Store
+
+# Signing material
 key.properties
 *.jks
+*.keystore
+
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.hprof
+
+# Per-user / per-machine IDE state
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/usage.statistics.xml
+/.idea/dictionaries
+/.idea/shelf
+/.idea/libraries
+/.idea/caches
+/.idea/.name
+/.idea/deploymentTargetSelector.xml
+/.idea/deploymentTargetDropDown.xml
+/.idea/androidTestResultsUserPreferences.xml
+/.idea/appInsightsSettings.xml
