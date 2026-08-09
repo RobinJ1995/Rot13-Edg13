@@ -4,7 +4,7 @@ plugins {
 }
 
 jacoco {
-    toolVersion = '0.8.13'
+    toolVersion = '0.8.15'
 }
 
 def keystorePropertiesFile = rootProject.file("key.properties")
@@ -14,25 +14,25 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace 'be.robinj.rot13'
-    compileSdk 35
+    namespace = 'be.robinj.rot13'
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "be.robinj.rot13"
-        minSdk 21
-        targetSdk 35
-        versionCode 5
-        versionName "1.3.1"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = "be.robinj.rot13"
+        minSdk = 21
+        targetSdk = 36
+        versionCode = 5
+        versionName = "1.3.1"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
             if (keystorePropertiesFile.exists()) {
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
+                storeFile = file(keystoreProperties['storeFile'])
+                storePassword = keystoreProperties['storePassword']
+                keyAlias = keystoreProperties['keyAlias']
+                keyPassword = keystoreProperties['keyPassword']
             }
         }
     }
@@ -41,14 +41,14 @@ android {
         release {
             // Sign release builds only when a keystore is provided, so local
             // and CI test builds without one still succeed.
-            signingConfig keystorePropertiesFile.exists() ? signingConfigs.release : null
-            minifyEnabled false
+            signingConfig = keystorePropertiesFile.exists() ? signingConfigs.release : null
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     testOptions {
@@ -64,17 +64,10 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
-        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
-    }
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
 
     // Robolectric – runs on the JVM, no emulator needed
     testImplementation 'junit:junit:4.13.2'
@@ -84,8 +77,8 @@ dependencies {
     testImplementation 'androidx.test.espresso:espresso-core:3.7.0'
     testImplementation 'androidx.test.espresso:espresso-intents:3.7.0'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 }
 
 tasks.register('jacocoTestReport', JacocoReport) {
@@ -103,12 +96,18 @@ tasks.register('jacocoTestReport', JacocoReport) {
         '**/Manifest*.*'
     ]
 
-    classDirectories.setFrom(files(
-        fileTree(dir: "$buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes", excludes: exclusions)
-    ))
+    // Ask the compile task where it puts its classes rather than hardcoding the
+    // intermediates layout, which AGP is free to move between versions.
+    classDirectories.setFrom(
+        tasks.named('compileDebugJavaWithJavac', JavaCompile)
+            .map { fileTree(it.destinationDirectory).matching { exclude exclusions } }
+    )
     sourceDirectories.setFrom(files('src/main/java'))
-    executionData.setFrom(fileTree(buildDir) {
-        include 'jacoco/testDebugUnitTest.exec'
-        include 'outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec'
+    // project.buildDir was removed in Gradle 9.
+    executionData.setFrom(layout.buildDirectory.map { buildDir ->
+        fileTree(buildDir) {
+            include 'jacoco/testDebugUnitTest.exec'
+            include 'outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec'
+        }
     })
 }

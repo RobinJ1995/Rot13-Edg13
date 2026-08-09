@@ -105,8 +105,10 @@ jobs:
             fi
             # Extract and compare as a string: interpolating the version into a
             # regex would let its dots match any character.
+            # Tags cut before the build script moved to '=' assignment still
+            # carry the bare 'versionName "x"' form, so accept both.
             tagged_version="$(git show "$TAG:app/build.gradle" 2>/dev/null \
-              | sed -nE 's/^[[:space:]]*versionName "(.*)"[[:space:]]*$/\1/p' | head -1)"
+              | sed -nE 's/^[[:space:]]*versionName[[:space:]]+(=[[:space:]]*)?"(.*)"[[:space:]]*$/\2/p' | head -1)"
             if [ "$tagged_version" != "${TAG#v}" ]; then
               echo "::error::Tag $TAG already exists but its commit records versionName '$tagged_version', not '${TAG#v}' — pick a version that has not been released."
               exit 1
@@ -126,20 +128,21 @@ jobs:
           version="${TAG#v}"
 
           # versionCode must increase monotonically or Android refuses the upgrade.
-          current_code="$(sed -nE 's/^[[:space:]]*versionCode ([0-9]+)[[:space:]]*$/\1/p' app/build.gradle | head -1)"
+          current_code="$(sed -nE 's/^[[:space:]]*versionCode[[:space:]]+(=[[:space:]]*)?([0-9]+)[[:space:]]*$/\2/p' app/build.gradle | head -1)"
           if [ -z "$current_code" ]; then
             echo "::error::Could not read versionCode from app/build.gradle."
             exit 1
           fi
           next_code=$((current_code + 1))
-          # Keep the original indentation rather than assuming a column.
-          sed -i -E "s/^([[:space:]]*)versionCode [0-9]+[[:space:]]*$/\1versionCode ${next_code}/" app/build.gradle
-          sed -i -E "s/^([[:space:]]*)versionName \".*\"[[:space:]]*$/\1versionName \"${version}\"/" app/build.gradle
+          # Keep the original indentation rather than assuming a column, and
+          # normalise onto the '=' form the build script now uses.
+          sed -i -E "s/^([[:space:]]*)versionCode[[:space:]]+(=[[:space:]]*)?[0-9]+[[:space:]]*$/\1versionCode = ${next_code}/" app/build.gradle
+          sed -i -E "s/^([[:space:]]*)versionName[[:space:]]+(=[[:space:]]*)?\".*\"[[:space:]]*$/\1versionName = \"${version}\"/" app/build.gradle
 
           # Fail loudly rather than releasing an unbumped build. Compare the
           # extracted values literally.
-          got_name="$(sed -nE 's/^[[:space:]]*versionName "(.*)"[[:space:]]*$/\1/p' app/build.gradle | head -1)"
-          got_code="$(sed -nE 's/^[[:space:]]*versionCode ([0-9]+)[[:space:]]*$/\1/p' app/build.gradle | head -1)"
+          got_name="$(sed -nE 's/^[[:space:]]*versionName[[:space:]]+=[[:space:]]*"(.*)"[[:space:]]*$/\1/p' app/build.gradle | head -1)"
+          got_code="$(sed -nE 's/^[[:space:]]*versionCode[[:space:]]+=[[:space:]]*([0-9]+)[[:space:]]*$/\1/p' app/build.gradle | head -1)"
           [ "$got_name" = "$version" ] || {
             echo "::error::Failed to set versionName to ${version} in app/build.gradle (got '$got_name')."
             exit 1
