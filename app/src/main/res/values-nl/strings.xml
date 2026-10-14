@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Rot13 ↺ Ebg13</string>
-    <string name="about">Over</string>
+	<string name="app_name">Rot13 ↺ Ebg13</string>
+	<string name="about">Over</string>
 	<string name="title_activity_about">Over</string>
 	<string name="dev">Ontwikkelaar</string>
 

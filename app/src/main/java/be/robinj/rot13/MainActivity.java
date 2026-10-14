@@ -15,41 +15,40 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-    }
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new PlaceholderFragment())
+					.commit();
+		}
+	}
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId ();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId ();
 
-	    if (id == R.id.action_about)
-	    {
+	    if (id == R.id.action_about) {
 		    Intent intent = new Intent (this, About.class);
 		    this.startActivity (intent);
 
 		    return true;
 	    }
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
 	public static String rotate (String str)
 	{
@@ -57,14 +56,15 @@ public class MainActivity extends AppCompatActivity {
 		for (int i = 0; i < str.length (); i++)
 		{
 			char c = str.charAt (i);
-			if (c >= 'a' && c <= 'm')
+			if (c >= 'a' && c <= 'm') {
 				c += 13;
-			else if (c >= 'A' && c <= 'M')
+			} else if (c >= 'A' && c <= 'M') {
 				c += 13;
-			else if (c >= 'n' && c <= 'z')
+			} else if (c >= 'n' && c <= 'z') {
 				c -= 13;
-			else if (c >= 'N' && c <= 'Z')
+			} else if (c >= 'N' && c <= 'Z') {
 				c -= 13;
+			}
 
 			rotated.append (c);
 		}
@@ -72,15 +72,15 @@ public class MainActivity extends AppCompatActivity {
 		return rotated.toString ();
 	}
 
-    public static class PlaceholderFragment extends Fragment {
+	public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
+		public PlaceholderFragment() {
+		}
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
 	        final TextView txtPlain = (TextView) rootView.findViewById (R.id.txtPlain);
 	        final TextView txtRot13 = (TextView) rootView.findViewById (R.id.txtRot13);
@@ -99,8 +99,7 @@ public class MainActivity extends AppCompatActivity {
 			        @Override
 			        public void onTextChanged (CharSequence charSequence, int i, int i2, int i3)
 			        {
-				        if (txtPlain.hasFocus ())
-				        {
+				        if (txtPlain.hasFocus ()) {
 					        String encoded = MainActivity.rotate(charSequence.toString());
 					        txtRot13.setText(encoded);
 				        }
@@ -127,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
 			        @Override
 			        public void onTextChanged (CharSequence charSequence, int i, int i2, int i3)
 			        {
-				        if (txtRot13.hasFocus ())
-				        {
+				        if (txtRot13.hasFocus ()) {
 					        String decoded = MainActivity.rotate(charSequence.toString());
 					        txtPlain.setText(decoded);
 				        }
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 	        );
 
 	        return rootView;
-        }
-    }
+		}
+	}
 
 }

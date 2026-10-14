@@ -1,14 +1,14 @@
 <resources>
 
-    <!--
+	<!--
         From Android 15 (targetSdk 35+) the system draws the status bar
         transparently and ignores android:statusBarColor, so what shows behind
         the icons is this theme's light window background. Without this the
         system keeps its default light-on-dark icons, leaving white icons on a
         white strip. Requires API 23, hence the -v23 qualifier over minSdk 21.
     -->
-    <style name="AppTheme" parent="Base.AppTheme">
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
+	<style name="AppTheme" parent="Base.AppTheme">
+		<item name="android:windowLightStatusBar">true</item>
+	</style>
 
 </resources>
