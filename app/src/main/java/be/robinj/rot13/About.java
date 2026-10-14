@@ -16,17 +16,17 @@ import android.widget.TextView;
 
 public class About extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_about);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-    }
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new PlaceholderFragment())
+					.commit();
+		}
+	}
 
 	public void btnDev_clicked (View view)
 	{
@@ -34,30 +34,30 @@ public class About extends AppCompatActivity {
 		this.startActivity (intent);
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.about, menu);
-        return true;
-    }
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.about, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId ();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId ();
 
-        return super.onOptionsItemSelected (item);
-    }
+		return super.onOptionsItemSelected (item);
+	}
 
-    public static class PlaceholderFragment extends Fragment {
+	public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
+		public PlaceholderFragment() {
+		}
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 
 	        TextView version = (TextView) rootView.findViewById (R.id.version);
 	        String v = "";
@@ -74,8 +74,8 @@ public class About extends AppCompatActivity {
 
 	        version.setText (v);
 
-            return rootView;
-        }
-    }
+			return rootView;
+		}
+	}
 
 }
